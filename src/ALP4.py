@@ -436,7 +436,7 @@ class ALP4():
         
         RETURNS
         -------
-        SequenceID : ctypes c_ulong
+        SequenceId : ctypes c_ulong
                      Id of the created sequence.
                      This id is stored internally as the last created sequence and
                      erase the previous one. When a sequence relasted function is used without
@@ -711,7 +711,7 @@ class ALP4():
         ret = ct.c_double(0)
         
         self._checkError(self._ALPLib.AlpDevInquire(self.ALP_ID, inquireType, ct.byref(ret)),'Error sending request.')
-        return ret.value()
+        return ret.value
         
             
     def SeqInquire(self, inquireType,   SequenceId = None):
@@ -853,7 +853,7 @@ class ALP4():
         
         See AlpDevControlEx in the ALP API description for control types.
         '''
-        self._checkError(self._ALPLib.AlpDevControlEx(self.ALP_ID,  controlType, userStruct.byref()),'Error sending request.')
+        self._checkError(self._ALPLib.AlpDevControlEx(self.ALP_ID,  controlType, ct.byref(userStruct)),'Error sending request.')
      
     def ProjControl(self,  controlType, value):
         '''
